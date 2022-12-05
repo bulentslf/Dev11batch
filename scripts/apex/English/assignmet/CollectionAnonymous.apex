@@ -1,0 +1,10 @@
+string cm = CollectionClass.listaAssignment(1);
+system.debug(cm);
+string cm1 = CollectionClass.listaAssignment(13);
+system.debug(cm1);
+string cm2 = CollectionClass.listaAssignment(-2);
+system.debug(cm2);
+string cm3 = CollectionClass.listaAssignment(10);
+system.debug(cm3);
+string cm4 = CollectionClass.listaAssignment(15);
+system.debug(cm4);
