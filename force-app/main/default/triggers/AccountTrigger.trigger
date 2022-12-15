@@ -1,31 +1,36 @@
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
-   
-    if (trigger.isAfter && trigger.isUpdate) {
-        system.debug('after update trigger');
-
-        map<id, account> accTriggerOldMap = trigger.oldMap; //map of old records, id is key
-        map<id, account> accTriggerNewMap = trigger.newMap; //map of new records, id is key
-        set<id> accountIds = accTriggerNewMap.keySet(); //all the IDS.
-        integer countWebsite = 0;
-
-        for (Id eachId : accountIds) {
-            //get NEW account value from NewMap - id is same in newmap and oldmap
-            account newAcc = accTriggerNewMap.get(eachId);
-            string newWebsite = newAcc.Website;
-            system.debug('** newWebsite -> ' + newWebsite);
-            //get OLD account value from OldMap
-            account oldAcc = accTriggerOldMap.get(eachId);
-            string oldWebsite = oldAcc.Website;
-            system.debug('** oldWebsite -> ' + oldWebsite);
-
-            if (newWebsite != oldWebsite) {
-                system.debug('Account is ' + newAcc.Name + ', website changed to ' + newwebsite);
-                countwebsite++;
-            }
-           
-        }
-        system.debug('website updated for # of accounts => ' + countwebsite);
+    if (Trigger.isBefore) {
+        AccountTriggerHandler.updateDescription(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
     }
+
+
+   
+    // if (trigger.isAfter && trigger.isUpdate) {
+    //     system.debug('after update trigger');
+
+    //     map<id, account> accTriggerOldMap = trigger.oldMap; //map of old records, id is key
+    //     map<id, account> accTriggerNewMap = trigger.newMap; //map of new records, id is key
+    //     set<id> accountIds = accTriggerNewMap.keySet(); //all the IDS.
+    //     integer countWebsite = 0;
+
+    //     for (Id eachId : accountIds) {
+    //         //get NEW account value from NewMap - id is same in newmap and oldmap
+    //         account newAcc = accTriggerNewMap.get(eachId);
+    //         string newWebsite = newAcc.Website;
+    //         system.debug('** newWebsite -> ' + newWebsite);
+    //         //get OLD account value from OldMap
+    //         account oldAcc = accTriggerOldMap.get(eachId);
+    //         string oldWebsite = oldAcc.Website;
+    //         system.debug('** oldWebsite -> ' + oldWebsite);
+
+    //         if (newWebsite != oldWebsite) {
+    //             system.debug('Account is ' + newAcc.Name + ', website changed to ' + newwebsite);
+    //             countwebsite++;
+    //         }
+           
+    //     }
+    //     system.debug('website updated for # of accounts => ' + countwebsite);
+    // }
 
    
     // List<account> accTriggerOld = trigger.old; //list of old records
