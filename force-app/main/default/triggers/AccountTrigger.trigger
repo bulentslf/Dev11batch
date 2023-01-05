@@ -1,12 +1,18 @@
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
     
-    // if (Trigger.isBefore) {
-    //     AccountTriggerHandler.updateDescription(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
-    // }
-    // if (Trigger.isAfter && Trigger.isUpdate) {
-    //     //HERE we call handler method to update all contacts VIP field
-    //     AccountTriggerHandler.updateVIPforContacts(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
-    // }
+    if (Trigger.isBefore) {
+        system.debug('call updateDescription NOW.');
+        AccountTriggerHandler.updateDescription(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+        system.debug('Called updateDescription DONE already.');
+    }
+    if (Trigger.isAfter && Trigger.isInsert) {
+        AccountQueueableExample aq = new AccountQueueableExample(trigger.new);
+        id jobId = system.enqueueJob(aq);
+    }
+    if (Trigger.isAfter && Trigger.isUpdate) {
+        //HERE we call handler method to update all contacts VIP field
+        AccountTriggerHandler.updateVIPforContacts(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+    }
 
 
 
@@ -211,11 +217,5 @@ trigger AccountTrigger on Account (before insert, before update, after insert, a
         system.debug('account after insert trigger called');
     }
     */
-        // TR ASS 22
-       // Bir Account update edildiğinde Annual Revenue değişmişse Description fieldine aradaki farkı bildiren bir mesaj  yazsın. (edited) 
-    if (trigger.isBefore && trigger.isUpdate) {
-        AccountTriggerHandler.updateDescribtion(trigger.new, trigger.oldMap);
-        
-    }
     
 }
