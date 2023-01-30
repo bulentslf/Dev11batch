@@ -1,5 +1,5 @@
 public class AccountUpdateHelper {
-    //invocabel method we can call from Process builder or Flows.
+    //invocable method we can call from Process builder or Flows.
     @invocableMethod
     public static void accountWebsiteUpdate(list<id> accIdds) {
         system.debug('inside invocable method');
