@@ -11,3 +11,25 @@ Flow.Interview autoLaunchFlow = Flow.Interview.createInterview('Auto_Launched_De
 autoLaunchFlow.start();
 
 
+RestApiOutboundCallout.getAnimals();
+RestApiOutboundCallout.getUser();
+RestApiOutboundCallout.getListOfUsers();
+RestApiOutboundCallout.postAnimal();
+RestApiOutboundCallout.postUser();
+// RestApiOutboundCalloutDeneme.getListOfUsers();
+// RestApiOutboundCalloutDeneme.postAnimal();
+// RestApiOutboundCalloutDeneme.postUser();
+RestApiOutboundCallout.getAnimalWithAuthenticationNamedCredential();
+SoapApiOutboundCallout.makeMultiplication();
+SoapApiOutboundCallout.makeParkCallout();
+GetPostBatch11.getTodos();
+GetPostBatch11.postTodos();
+SoapCallout11.parksCallout('Germany');
+
+
+
+
+
+
+
+
