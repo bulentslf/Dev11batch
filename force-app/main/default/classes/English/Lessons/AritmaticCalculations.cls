@@ -9,6 +9,6 @@ public class AritmaticCalculations {
     }
     public void Multiplication(integer x, integer y, integer m){
         integer z = x * y *m;
-        system.debug('The result is ' + z);
+     system.debug('The result is ' + z);
     }
 }
